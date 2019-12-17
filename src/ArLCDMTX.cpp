@@ -334,7 +334,7 @@ AREXPORT bool ArLCDMTX::blockingConnect(bool sendTracking, bool recvTracking,
 			unsigned char *versionBuf = (unsigned char *)packet->getBuf();
 
 			// verify get num trans received
-			if (versionBuf[3] != VERSION)  {
+			if (versionBuf[3] != COMMAND_VERSION)  {
 
 				ArLog::log(ArLog::Normal,
 					"%s::blockingConnect() Invalid response from lcd to send version (0x%x)",
@@ -982,7 +982,7 @@ AREXPORT bool ArLCDMTX::sendVersion()
 {
 
 	ArRobotPacket sendPacket(HEADER1, HEADER2);
-	sendPacket.setID(VERSION);
+	sendPacket.setID(COMMAND_VERSION);
 
 	if (!mySender->sendPacket(&sendPacket)) {
 		ArLog::log(ArLog::Terse,
@@ -1981,7 +1981,7 @@ AREXPORT bool ArLCDMTX::downloadFirmware()
 		unsigned char *versionBuf = (unsigned char *)packet->getBuf();
 
 		// verify get num trans received
-		if (versionBuf[3] != VERSION)  {
+		if (versionBuf[3] != COMMAND_VERSION)  {
 
 			ArLog::log(ArLog::Normal,
 				"%s::downloadFirmware() Invalid response from lcd to send version (0x%x)",

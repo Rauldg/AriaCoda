@@ -203,6 +203,10 @@ public:
 	static void setFirmwareDir(const char *dir) {
 		ourFirmwareBaseDir = dir;
 	}
+
+	std::string myFirmwareVersion;
+	static std::string ourFirmwareBaseDir;
+
 protected:
 
 	/// Logs the information about the sensor
@@ -325,7 +329,7 @@ protected:
 
 	enum Commands {
 		KEEP_ALIVE = 0x00,
-		VERSION = 0x01,
+		COMMAND_VERSION = 0x01,
 		SYSTEM_INFO = 0x02,
 		REBOOT = 0x03,
 		GET_CURRENT_SCREEN_NUM = 0x10,
@@ -357,7 +361,7 @@ protected:
 
 	// System Info
 	unsigned char myId;
-	std::string myFirmwareVersion;
+
 	unsigned int mySerialNumber;
 	long long myCurrentTime;
 	unsigned char myCurrentScreen;
@@ -389,7 +393,7 @@ protected:
 	ArFunctorC<ArLCDMTX> mySensorInterpTask;
 	ArRetFunctorC<bool, ArLCDMTX> myAriaExitCB;
 
-	static std::string ourFirmwareBaseDir;
+
 };
 
 
